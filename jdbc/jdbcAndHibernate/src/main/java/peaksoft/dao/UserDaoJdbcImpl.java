@@ -13,6 +13,8 @@ import java.util.List;
 
 public class UserDaoJdbcImpl implements UserDao {
     private Util util;
+
+    /** Model "User" is never used in this project*/
 //    private final User user = new User();
 
     public UserDaoJdbcImpl() {
