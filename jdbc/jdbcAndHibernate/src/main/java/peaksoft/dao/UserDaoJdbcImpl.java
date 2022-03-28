@@ -37,6 +37,11 @@ public class UserDaoJdbcImpl implements UserDao {
 
     }
 
+    @Override
+    public void createUsersTable(User user) {
+
+    }
+
     public void dropUsersTable() {
         String sql = "DROP TABLE User1";
         try(Connection connection = Util.connection();

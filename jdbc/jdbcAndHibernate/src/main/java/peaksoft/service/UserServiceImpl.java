@@ -22,7 +22,7 @@ private  final User user = new User();
 
 
     public void createUsersTable() {
-        userDaoJdbc.createUsersTable();
+        userDaoJdbc.createUsersTable(user);
 
     }
 
