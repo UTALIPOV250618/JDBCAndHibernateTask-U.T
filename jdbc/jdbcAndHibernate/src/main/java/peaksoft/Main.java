@@ -1,6 +1,7 @@
 package peaksoft;
 
 import peaksoft.dao.UserDao;
+import peaksoft.dao.UserDaoHibernateImpl;
 import peaksoft.dao.UserDaoJdbcImpl;
 import peaksoft.model.User;
 import peaksoft.service.UserServiceImpl;
@@ -12,6 +13,10 @@ public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
 
+       User user = new User("Ulukmyrza","Talipov",(byte) 18);
+        UserDaoHibernateImpl userDaoHibernate = new UserDaoHibernateImpl();
+        userDaoHibernate.createUsersTable();
+
         UserDaoJdbcImpl users = new UserDaoJdbcImpl();
         UserDaoJdbcImpl user1  =new UserDaoJdbcImpl();
         UserDaoJdbcImpl user2  =new UserDaoJdbcImpl();
@@ -20,11 +25,11 @@ public class Main {
 
         users.createUsersTable();
 
-        user1.saveUser("Ulukmyrza","Talipov", (byte) 30);
-        user2.saveUser("Muna","Talipova", (byte) 28);
-        user3.saveUser("Sulaiman","Ulukmyrzaev", (byte) 4);
-        user4.saveUser("Dati","Talipova", (byte) 28);
-        users.getAllUsers();
+//        user1.saveUser("Ulukmyrza","Talipov", (byte) 30);
+//        user2.saveUser("Muna","Talipova", (byte) 28);
+//        user3.saveUser("Sulaiman","Ulukmyrzaev", (byte) 4);
+//        user4.saveUser("Dati","Talipova", (byte) 28);
+//        users.getAllUsers();
 //        users.cleanUsersTable();
 //          users.dropUsersTable();
 

@@ -5,6 +5,7 @@ import org.hibernate.query.Query;
 import peaksoft.model.User;
 import peaksoft.util.HibernateConfig;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +16,12 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     @Override
-    public void createUsersTable(User user) {
-        Session session = HibernateConfig.getSession().openSession();
-        session.beginTransaction();
-        session.save(user);
-        session.getTransaction().commit();
-        session.close();
-        System.out.println("Table created successfully");
+    public void createUsersTable() {
+        try{
+            HibernateConfig.getSession();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @Override
@@ -37,6 +37,9 @@ public class UserDaoHibernateImpl implements UserDao {
 
         Session session = HibernateConfig.getSession().openSession();
         session.beginTransaction();
+        session.save(new User(name,lastName,age));
+        session.getTransaction().commit();
+        session.close();
 
     }
 
@@ -70,8 +73,7 @@ public class UserDaoHibernateImpl implements UserDao {
     public void cleanUsersTable() {
         Session session = HibernateConfig.getSession().openSession();
         session.beginTransaction();
-        Query query = session.createQuery("DELETE FROM User");
-        query.executeUpdate();
+        session.createSQLQuery("TRUNCATE users").executeUpdate();
         session.getTransaction().commit();
         session.close();
     }
